@@ -1,0 +1,15 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node / Next
+node_modules/
+.next/
+out/
+dist/
+coverage/
+
+# OS/Editor
+.DS_Store
+.vscode/
