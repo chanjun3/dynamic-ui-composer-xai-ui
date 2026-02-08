@@ -1,0 +1,22 @@
+{
+  "id": "risk-assessment-v1",
+  "tenantId": "acme",
+  "role": "auditor",
+  "task": "risk_assessment",
+  "locale": "ja-JP",
+  "termsDictionaryRef": "tenant/acme/terms.json",
+  "navigation": [{ "id": "nav-home", "labelKey": "nav.home", "to": "/home" }],
+  "pages": {
+    "home": {
+      "layout": { "type": "TwoColumn", "props": { "left": 7, "right": 5 } },
+      "widgets": [
+        { "id": "w-form", "type": "AssessmentForm", "props": { "schemaRef": "forms/risk.json" } },
+        { "id": "w-xai", "type": "ExplanationPanel", "bind": "ai.explanation" }
+      ]
+    }
+  },
+  "uiVariants": {
+    "default": { "page": "home" },
+    "chat": { "page": "home", "overrides": { "widgets": [{ "id": "w-form", "hidden": true }] } }
+  }
+}

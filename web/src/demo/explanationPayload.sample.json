@@ -1,0 +1,9 @@
+{
+  "decisionId": "dec_2026_02_08_001",
+  "timestamp": "2026-02-08T00:00:00.000Z",
+  "model": { "provider": "openai", "name": "gpt-5.x", "version": "2026-02-01" },
+  "rulesApplied": [{ "ruleId": "policy.control.required", "result": true, "inputs": ["tenantPolicy:acme_v3"] }],
+  "evidence": [{ "chunkId": "doc:policy#p4", "source": "policy.pdf", "title": "統制要件", "score": 0.82 }],
+  "confidence": 0.74,
+  "explanation": "短文の説明（詳細はEvidence/Rulesで担保）"
+}
