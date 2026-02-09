@@ -136,6 +136,18 @@
 - `UIProfile` / `explanationPayload` の **表示はサニタイズ**（XSS防止）
 - 監査向けの「誰が/いつ/何を見て/何を決裁したか」は **追跡ID（traceId）** で関連付け
 
+### ガバナンス注記（公開設定・CI・ブランチ運用）
+
+- **公開設定（Visibility）:** 本リポジトリは **Public** にしています。目的は、GitHub のブランチ保護（Branch protection）を **確実に強制（enforced）** するためです（現セットアップでは Private のままだと強制が効かない挙動がありました）。
+- **CI / ブランチ運用（fail-closed）:**
+  - 変更は必ず **Pull Request（PR）経由**（`master` へ直pushしない）。
+  - 必須ステータスチェックは **`test`**（GitHub Actions / `web-ci`）。**これが通るまでマージ不可**。
+  - マージ前にブランチは **`master` の最新に追随（up-to-date）**していること。
+  - マージは原則 **Squash merge**、マージ後は feature ブランチを削除する。
+- **セキュリティ注記:**
+  - **Secrets は絶対にコミットしない**（APIキー、トークン、`.env`、認証情報など）。git履歴は実質的に消せない前提で扱う。
+  - GitHub Actions のログやメタ情報は公開され得るため、CI出力に機密情報を出さない。
+
 ---
 
 <a id="evals"></a>
@@ -149,6 +161,7 @@
 - `Replay View` がイベント列から **同じ順序・同じ状態** を再現できる（最低1シナリオ）
 
 ---
+
 
 ## 8. MVP (Demo-Ready)
 

@@ -9,6 +9,14 @@
 - Evidence: <commit hash / test pass / etc.> (optional)
 -->
 
+## 2026-02-09 — Enforce PR + required CI on master (public repo)
+- What: Add GitHub Actions workflow `web-ci` under `.github/workflows/web-ci.yml`, fix install to use npm, ensure workflow runs on `pull_request` (so required checks report back to PRs), and configure classic branch protection on `master` with required status check `test` + “up to date before merge”. Switch repo visibility to **public** to ensure protections are enforced.
+- Why: Make the repo **fail-closed** at GitHub level: no merge to `master` unless CI passes, and PRs always receive the required check result (prevents “Expected” deadlock).
+- Risk: Public visibility exposes repo contents and Actions logs; mitigation: keep secrets out of git, avoid committing sensitive files (keys, .env), and rely on CI/branch protection to prevent unsafe merges.
+- Owner: chanjun3
+- Date: 2026-02-09 (Asia/Tokyo)
+- Evidence: `web-ci` SUCCESS; PR #1 merged with required checks satisfied; commits `1b3b730` (CI green baseline) and merge result `e19440e` on `master`.
+
 ## 2026-02-08 — Add web/ Next.js app + root-commit rule
 - What: Add `web/` Next.js app; commit/push from repo root; keep generated artifacts ignored (`web/node_modules/`, `web/.next/`).
 - Why: Make demo runnable + prevent accidental commits caused by working-directory confusion.
