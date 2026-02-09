@@ -191,20 +191,29 @@
 
 ## 9. Project Structure (suggested)
 
-```
-src/
-  contracts/        # zod schemas, types
-  composer/         # UIComposer, registry, renderer
-  rules/            # RuleEvaluator interface + adapters
-  xai/              # ExplanationPanel, EvidenceList, ...
-  replay/           # Replay View (timeline, player)
-  i18n/             # dictionaries, tenant terms
-  audit/            # event emitters, redaction, traceId
-  demo/             # sample profiles + mock data
-tests/
-  contracts/        # schema validation tests
-  composer/         # render tests
-  replay/           # deterministic playback tests
+> NOTE: 実装（Next.jsアプリ）は `web/` 配下に集約する。  
+> ルート直下は「憲法（README/AGENT/STATUS）＋意思決定ログ（decision_log.md）」を中心に置く。
+
+```text
+decision_log.md
+README.md
+AGENT.md
+STATUS.md
+web/
+├─ src/
+│  ├─ contracts/   # zod schemas, types
+│  ├─ composer/    # UIComposer, registry, renderer（今後）
+│  ├─ rules/       # RuleEvaluator interface + adapters（今後）
+│  ├─ xai/         # ExplanationPanel, EvidenceList, ...（今後）
+│  ├─ replay/      # Replay View (timeline, player)（今後）
+│  ├─ i18n/        # dictionaries, tenant terms（今後）
+│  ├─ audit/       # event emitters, redaction, traceId（今後）
+│  └─ demo/        # sample profiles + mock data
+├─ tests/
+│  ├─ contracts/   # schema validation tests
+│  ├─ composer/    # render tests（今後）
+│  └─ replay/      # deterministic playback tests（今後）
+└─ public/
 ```
 
 ---

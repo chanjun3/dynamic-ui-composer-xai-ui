@@ -20,10 +20,31 @@
   - Risk（トレードオフ）
   - Owner（誰が決めた）
   - Date（いつ）
+- decision_log.md は **canonical bullet format**（`- What:` / `- Why:` / `- Risk:` / `- Owner:` / `- Date:` / `- Evidence:`）で統一する（見出し式は禁止）。
 
 ### 0.3 AI usage policy
 - AIは提案役。採用は **テストと契約** で決める
 - 生成物は必ず契約（Schema/SSOT）に照らして検証する
+
+### 0.4 Repo / Git Hygiene (事故防止の運用契約)
+#### Git rule（超重要）
+- **commit/push は原則 repo ルートで行う**
+  - 目的：ルート直下の憲法（README/AGENT/STATUS）と `decision_log.md` と、`web/` 実装を **同一コミット粒度で統制**する
+- **`web/` 内で `../decision_log.md` を触るのは禁止**
+  - 理由：作業ディレクトリがズレると、差分確認・ステージ対象・CI実行場所が混乱して事故源になる
+
+#### Staging rule
+- **`git add -A` をデフォルト禁止**
+  - 理由：`node_modules/` や `.next/` 等の生成物が混入する事故が起きやすい
+- 追加は **対象を限定**して行う
+  - 例：`git add -- decision_log.md`
+  - 例：`git add -- web`
+
+#### Lockfile rule
+- `pnpm-lock.yaml` は **初回追加はOK**
+- 以後、`pnpm-lock.yaml` が変更されるコミットは **変更理由をコミットメッセージに含める**
+  - 例：`chore(deps): bump <pkg> (lockfile updated)`
+  - 目的：依存変更の意図を監査可能にし、差分レビューの負担を下げる
 
 ---
 
@@ -188,3 +209,11 @@ Observe → Infer → Specify → Implement → Validate → Release → Learn
   - `output.md`
   - `questions.md`
   - `decision_log.md`
+
+## 4. Validation（反映後にやること）
+- `git diff AGENT.md` で追記だけになってるの確認
+- `pnpm test:run`（web側）を通してクリーンなままコミット
+
+## 5. Risks / assumptions / open decisions
+- **Risk:** ルール増やしすぎると運用が重くなる → 今回は「事故が起きた点」だけに絞ってる
+- **別視点:** Branch protection / CI必須化もAGENTに追記できる（ただし、まずはGit hygieneで事故率を下げるのが先）

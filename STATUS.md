@@ -1,6 +1,6 @@
 # STATUS - Dynamic UI Composer & XAI UI Kit (AG-UI)
 
-**Last updated:** 2026-02-06 (Asia/Tokyo)
+**Last updated:** 2026-02-09 (Asia/Tokyo)
 
 ## TL;DR
 - **SSOT:** README.md（思想・契約・DoD）
@@ -28,10 +28,10 @@
 **Goal:** Contracts→Composer→XAI→Audit→Replay を "細く" つないで、MVPシナリオが通る状態にする。
 
 1) **Contracts（Schema-first）**
-- [ ] `src/contracts/uiProfile.ts`（zod）
-- [ ] `src/contracts/explanationPayload.ts`（zod）
-- [ ] `src/contracts/events.ts`（zod）
-- [ ] サンプルJSONを `src/demo/*` に置いて schema validate テスト
+- [x] `src/contracts/uiProfile.ts`（zod）※現状は `web/src/contracts/uiProfile.ts`
+- [x] `src/contracts/explanationPayload.ts`（zod）※現状は `web/src/contracts/explanationPayload.ts`
+- [x] `src/contracts/events.ts`（zod）※現状は `web/src/contracts/events.ts`
+- [x] サンプルJSONを `src/demo/*` に置いて schema validate テスト ※現状は `web/src/demo/*` + `web/tests/contracts/fixtures.test.ts`
 
 2) **Composer（落ち方が安全）**
 - [ ] `ComponentRegistry`（register/resolve）
@@ -135,4 +135,6 @@
 - **重要判断:** README（SSOT）追記 + `decision_log.md` 記録（What/Why/Risk/Owner/Date）
 
 ## Done（直近）
-- （まだなし）
+- web/ Next.js skeleton を追加
+- vitest `tests/contracts/fixtures.test.ts` が green（fixtures validate）
+- `decision_log.md` push 済み（commit: `937a425`）
