@@ -5,10 +5,7 @@ on:
     paths:
       - "web/**"
       - ".github/workflows/**"
-  pull_request:
-    paths:
-      - "web/**"
-      - ".github/workflows/**"
+  pull_request: {}
 
 jobs:
   test:
